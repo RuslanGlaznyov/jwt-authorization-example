@@ -60,7 +60,8 @@ router.get('/', isAuthMiddleware, userController.allUsers);
  *                  description: "Unauthorized"
  *
  */
-router.post('/',isAuthMiddleware, userController.createUser);
+//isAuthMiddleware
+router.post('/', userController.createUser);
 
 //user model
 /**

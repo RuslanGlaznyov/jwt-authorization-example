@@ -13,6 +13,12 @@ const isAuthMiddleware = require('./auth.middleware');
  *          description: ""
  *          produces:
  *          - "application/json"
+ *          parameters:
+ *            - in: body
+ *              name: user
+ *              required: true
+ *              schema:
+ *                   $ref: '#definitions/user'
  *          responses:
  *              200:
  *                  description: "successful operation"

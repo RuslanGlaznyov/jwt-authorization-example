@@ -6,7 +6,7 @@ const _ = require('lodash');
 
 const userModel = require('../user/user.model');
 const refreshTokenModel = require('./refreshToken.model');
-const {UnauthorizedError} = require("../utils/errorHandler/errors");
+const {UnauthorizedError, BadRequestError} = require("../utils/errorHandler/errors");
 
 
 async function issueTokenPair(userId) {
@@ -24,16 +24,19 @@ async function issueTokenPair(userId) {
 }
 
 const login = async (req, res, next) => {
-    if (_.isEmpty(req.body.login) || _.isEmpty(req.body.password)) {
-        return res.status(400).json({error: 'Required parameters'});
-    }
-
     try {
-        const {login, password} = req.body;
+        const {password, login} = req.body;
+        if (_.isEmpty(password) || _.isEmpty(login)) {
+            throw new BadRequestError('Required parameters');
+        }
         const user = await userModel.findOne({login}).exec();
-        // console.log(password !== user.password);
-        if (!user || (password !== user.password)) {
-            throw new UnauthorizedError();
+        if (!user) {
+            throw new BadRequestError('The login does not exist');
+        }
+
+        const isMatchPassword = await userModel.comparePassword(password);
+        if(!isMatchPassword){
+            throw new BadRequestError('The password is invalid');
         }
 
         const TokenPair = await issueTokenPair(user.id);
@@ -45,13 +48,12 @@ const login = async (req, res, next) => {
 
 const refresh = async (req, res, next) => {
     if (_.isEmpty(req.body.refreshToken)) {
-        return res.status(400).json({error: 'Required parameters'});
+        return new BadRequestError('Required parameters');
     }
     try {
         const { refreshToken } = req.body;
 
         const dbToken = await refreshTokenModel.findOne({ refreshToken: refreshToken }).exec();
-        console.log(dbToken);
         if (!dbToken) {
             throw new UnauthorizedError();
         }
