@@ -12,5 +12,5 @@ befor running you need to start mongodb server
 
 Running
 --------------------
-
+    $ npm test
     $ npm run dev    
