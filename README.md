@@ -1,5 +1,5 @@
-# jwt-autorization-example
-jwt autorization on nodejs
+# jwt-authorization-example
+jwt authorization on nodejs with express
 
 Installation
 ------------
