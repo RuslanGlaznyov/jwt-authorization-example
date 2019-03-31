@@ -6,7 +6,7 @@ const _ = require('lodash');
 
 const userModel = require('../user/user.model');
 const refreshTokenModel = require('./refreshToken.model');
-const {UnauthorizedError, BadRequestError} = require("../utils/errorHandler/errors");
+const {UnauthorizedError, BadRequestError} = require("../utils/errorHandler/errors/index");
 
 
 async function issueTokenPair(userId) {
@@ -34,7 +34,7 @@ const login = async (req, res, next) => {
             throw new BadRequestError('The login does not exist');
         }
 
-        const isMatchPassword = await userModel.comparePassword(password);
+        const isMatchPassword = await user.comparePassword(password);
         if(!isMatchPassword){
             throw new BadRequestError('The password is invalid');
         }
@@ -86,5 +86,5 @@ const logout = async (req, res, next) => {
 module.exports = {
     login,
     refresh,
-    logout
+    logout,
 };

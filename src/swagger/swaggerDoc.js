@@ -19,4 +19,4 @@ const specs = swaggerJsdoc(options);
 
 module.exports = (app) =>{
     app.use('/api', swaggerUi.serve, swaggerUi.setup(specs));
-}
+};

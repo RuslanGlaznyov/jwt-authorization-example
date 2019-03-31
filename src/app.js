@@ -5,8 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const config = require('./config');
-const errorHandler = require('./utils/errorHandler');
-const { NotFoundError } = require('./utils/errorHandler/errors');
+const errorHandler = require('./utils/errorHandler/index');
+const { NotFoundError } = require('./utils/errorHandler/errors/index');
 
 const routes = require('./routes');
 const swaggerDoc = require('./swagger/swaggerDoc');
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
     //     firstName: 'hui',
     //     lastName: 'hui'
     // };
-    // //middleware for test some sheet
+    // //middleware for tests some sheet
     // app.use((req, res, next) => {
     //    req.sheet = {
     //        user: user
@@ -45,7 +45,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 //set development mode
-if(process.argv[2] === 'dev') {
+if(process.env.NODE_ENV === 'development') {
     mongoose.set('debug', true);
     app.use(logger('dev'));
     swaggerDoc(app);
@@ -63,3 +63,5 @@ app.use(errorHandler);
 
 app.listen(config.PORT,
     () => console.log(`Express server listening on ${config.PORT}!`));
+
+module.exports = app;

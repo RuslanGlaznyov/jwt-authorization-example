@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const users = require('./user');
-const {login} = require('./auth');
+const users = require('./user/index');
+const {login} = require('./auth/index');
 
 function routes(app) {
     /**

@@ -1,11 +1,11 @@
 const user = require('./user.model');
-const {BadRequestError} = require("../utils/errorHandler/errors");
+const {BadRequestError} = require("../utils/errorHandler/errors/index");
 const _ = require('lodash');
 
 /* GET user listing. */
 const allUsers = async (req, res) => {
-    user.find()
-        .then(data => res.status(200).send(data))
+    const allUsers = await user.find().exec();
+    res.status(200).send(allUsers);
 };
 
 const createUser = async (req, res, next) => {
@@ -19,7 +19,7 @@ const createUser = async (req, res, next) => {
             login,
             password,
         });
-        res.status(200).send(data)
+        res.status(201).send(data)
     } catch (e) {
         next(e);
     }

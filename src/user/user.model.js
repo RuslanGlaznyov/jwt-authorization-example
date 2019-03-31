@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
     }
-});
+}, { versionKey: false });
 
 //hashing password
 userSchema.pre("save", function (next) {
@@ -27,7 +27,7 @@ userSchema.methods.comparePassword = function (candidatePassword) {
     return new Promise((resolve, reject) => {
         bcrypt.compare(candidatePassword, user.password, (err, isMatch) => {
             if(err){
-                reject(new Error("Error checking use password"));
+                reject(new Error("Error checking user password"));
             }else{
                 resolve(isMatch);
             }
