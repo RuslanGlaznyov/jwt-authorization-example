@@ -1,4 +1,4 @@
-# jwt-authorization-example
+# Json Web Tokens(JWT) Authorization Example
 jwt authorization on nodejs with express
 
 Installation
