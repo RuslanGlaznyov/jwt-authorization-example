@@ -5,7 +5,7 @@ const authController = require('./auth.controller');
 const isAuthMiddleware = require('./auth.middleware');
 /**
  * @swagger
- *   /login:
+ *   /auth/login:
  *      post:
  *          tags:
  *          - "auth"
@@ -33,7 +33,7 @@ router.post('/login', authController.login);
 
 /**
  * @swagger
- *   /refresh:
+ *   /auth/refresh:
  *      post:
  *          tags:
  *          - "auth"
@@ -62,7 +62,7 @@ router.post('/refresh',  authController.refresh);
 
 /**
  * @swagger
- *   /logout:
+ *   /auth/logout:
  *      post:
  *          tags:
  *          - "auth"

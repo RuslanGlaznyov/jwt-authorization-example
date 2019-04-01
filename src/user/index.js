@@ -40,9 +40,6 @@ router.get('/', isAuthMiddleware, userController.allUsers);
  *          produces:
  *          - "application/json"
  *          parameters:
- *            - in: header
- *              required: true
- *              name: authorization
  *            - in: body
  *              name: user
  *              required: true

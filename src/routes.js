@@ -18,7 +18,7 @@ function routes(app) {
      *  - name: "user"
      *    description: "work with user"
      */
-    app.use('/users', users);
+    app.use('/user', users);
 }
 
 module.exports = routes;
