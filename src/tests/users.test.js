@@ -25,7 +25,7 @@ describe("users tests", function() {
 
     it("should create new user", async () => {
         await request(app)
-            .post("/users")
+            .post("/user")
             .send({login: 'test_login', password: 'test_password'})
             .expect(201)
             .expect(res => {
@@ -37,7 +37,7 @@ describe("users tests", function() {
         const user = await userModel.findOne({login: "test"}).exec();
         const authLine = `Bearer ${issueToken({ id: user._id })}`;
         await request(app)
-            .get("/users")
+            .get("/user")
             .set('Authorization', authLine)
             .expect(200)
             .expect(res => {

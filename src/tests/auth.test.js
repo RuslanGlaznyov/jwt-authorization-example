@@ -59,7 +59,7 @@ describe("auth tests", function () {
         const user = await userModel.find({login: 'test'}).exec();
         const expiredToken = issueToken({ id: user._id }, { expiresIn: '1ms' });
         await request(app)
-            .get('/users')
+            .get('/user')
             .set('Authorization', `Bearer ${expiredToken}`)
             .expect(401)
             .expect( res => {
