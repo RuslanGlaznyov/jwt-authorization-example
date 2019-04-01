@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-mongoose.connect(config.MONGO_URL, { useNewUrlParser: true });
+mongoose.connect(config.MONGO_URL, { useNewUrlParser: true, useCreateIndex: true, });
 mongoose.connection.on('error', (err) => {
     console.error(`MongoDB connection error: ${err}`);
     throw new Error(`Unable to connect to MongoDB; connection error "${err}"`);

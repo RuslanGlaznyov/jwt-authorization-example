@@ -57,7 +57,7 @@ const refresh = async (req, res, next) => {
         if (!dbToken) {
             throw new UnauthorizedError();
         }
-        await refreshTokenModel.remove({
+        await refreshTokenModel.deleteMany({
             refreshToken: refreshToken,
         });
 
@@ -73,7 +73,7 @@ const refresh = async (req, res, next) => {
 const logout = async (req, res, next) => {
     try{
         const  userId  = req.context.user._id;
-        await refreshTokenModel.remove({
+        await refreshTokenModel.deleteMany({
             userId,
         });
         res.status(200).send({ success: true });

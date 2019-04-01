@@ -97,7 +97,7 @@ describe("auth tests", function () {
             .post('/auth/refresh')
             .send({refreshToken: loginRes.body.refreshToken})
             .expect(401)
-    })
+    });
 
     it("Multiple refresh tokens are valid", async () => {
         const firstLoginResp = await loginHandler();
@@ -119,6 +119,6 @@ describe("auth tests", function () {
             .send({refreshToken: secondLoginResp.body.refreshToken})
             .expect(200)
             .expect(checkPairToken);
-    })
+    });
 
 });
