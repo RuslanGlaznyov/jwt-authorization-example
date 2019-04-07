@@ -1,6 +1,6 @@
 # Json Web Tokens(JWT) Authorization Example
 jwt authorization on nodejs with express
-![Alt text](https://github.com/RuslanGlaznyov/jwt-authorization-example/blob/master/jwt_nodej.png "jwt_nodejs")
+![alt text](https://github.com/RuslanGlaznyov/jwt-authorization-example/blob/master/jwt_nodejs.png)
 
 Installation
 ------------
