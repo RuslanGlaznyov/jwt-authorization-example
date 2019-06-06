@@ -18,8 +18,8 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.4.19",
     "morgan": "^1.9.1",
-    "swagger-jsdoc": "^3.2.8",
-    "swagger-ui-express": "^4.0.2",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
